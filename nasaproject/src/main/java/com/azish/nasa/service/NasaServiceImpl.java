@@ -82,6 +82,7 @@ public class NasaServiceImpl implements NasaService {
         if (!StringUtils.isEmpty(nasaModel.getApi_key())) {
             builder.queryParam("api_key", nasaModel.getApi_key());
         }
-        return builder.toUriString();
+        //return builder.toUriString();
+        return apiNasaURI;
     }
 }
