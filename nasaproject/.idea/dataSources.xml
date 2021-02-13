@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="jdbc:h2:mem:nasadb" uuid="bc11b164-6f7f-4e7d-8c62-7c78a2fb98d7">
+      <driver-ref>h2.unified</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:mem:nasadb</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="nasadb" uuid="52a46479-6ae1-4eaf-895f-b84bc403f085">
+      <driver-ref>h2.unified</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:mem:nasadb</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="testdb" uuid="c68c3dc9-5893-470b-9e75-cdbc4da9a5d3">
+      <driver-ref>h2.unified</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:mem:testdb</jdbc-url>
+    </data-source>
+  </component>
+</project>

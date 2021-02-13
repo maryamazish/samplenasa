@@ -1,0 +1,9 @@
+
+`
+java:S1128"CRemove this unused import 'com.azish.nasa.service.NasaServiceImpl'.(Á¥ûô8ˆ…ÿÖù.
+ƒ
+java:S14882"aImmediately return this expression instead of assigning it to the temporary variable "photoList".(Æ›”ûÿÿÿÿ8·Ó²×ù.
+l	java:S117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÈúr8¤’­Áù.
+l	java:S117C"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÈúr8¤’­Áù.
+a	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(ĞÈúr8¤’­Áù.
+x	java:S116"WRename this field "api_nasa_URI" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è¹ğÅùÿÿÿÿ8¤’­Áù.
