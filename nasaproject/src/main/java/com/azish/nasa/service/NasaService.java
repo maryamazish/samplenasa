@@ -15,10 +15,11 @@ public interface NasaService {
      * @param nasaModel
      * @return
      */
-    PhotoList getData(String uri , NasaModel nasaModel);
+    PhotoList getData(String uri, NasaModel nasaModel);
 
     /**
      * Create Log in database
+     *
      * @param createModel
      */
     void createLog(CreateModel createModel);

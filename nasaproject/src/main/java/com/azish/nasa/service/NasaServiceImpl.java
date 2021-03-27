@@ -23,7 +23,6 @@ import java.util.Date;
 public class NasaServiceImpl implements NasaService {
 
     private static final String BUSINESS_EXCEPTION_NASA_API = "BUSINESS_EXCEPTION.NASA_API";
-    //private static final String BUSINESS_EXCEPTION_NATIONAL_CODE_DUPLICATE = "BUSINESS_EXCEPTION.NATIONAL_CODE_DUPLICATE";
 
     private final NasaRepository nasaRepository;
 
@@ -39,7 +38,6 @@ public class NasaServiceImpl implements NasaService {
         //اگر در زمان فراخوانی api خطایی رخ دهد پیغام خطای صادر شده لاگ میشود
         try {
             RestTemplate restTemplate = new RestTemplate();
-            //String fianalUri = makeUrl(uri, nasaModel);
             ResponseEntity<PhotoList> photoListResponse = restTemplate.getForEntity(this.makeUrl(uri, nasaModel), PhotoList.class);
             photoList.setPhotos(photoListResponse.getBody().getPhotos());
         } catch (Exception ex) {
@@ -59,7 +57,13 @@ public class NasaServiceImpl implements NasaService {
         nasaRepository.save(nasa);
     }
 
-    //make uri for call api
+    /**
+     * make uri for call api
+     *
+     * @param apiNasaURI
+     * @param nasaModel
+     * @return
+     */
     private String makeUrl(String apiNasaURI, NasaModel nasaModel) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(apiNasaURI);
 
@@ -82,7 +86,7 @@ public class NasaServiceImpl implements NasaService {
         if (!StringUtils.isEmpty(nasaModel.getApi_key())) {
             builder.queryParam("api_key", nasaModel.getApi_key());
         }
-        //return builder.toUriString();
-        return apiNasaURI;
+        return builder.toUriString();
+        //return apiNasaURI;
     }
 }

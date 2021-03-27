@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NasaRepository extends  CrudRepository<Nasa,Integer> {
+public interface NasaRepository extends CrudRepository<Nasa, Integer> {
 }

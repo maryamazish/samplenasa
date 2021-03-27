@@ -7,6 +7,7 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
+
 import java.util.Locale;
 
 @Configuration
@@ -14,12 +15,13 @@ public class MvcConfiguration implements WebMvcConfigurer {
 
     /**
      * تنظیمات چندزبانی سامانه
+     *
      * @return خروجی: منبع ترجمه برای چندزبانی با تنظیمات سفارشی شده
      */
     @Bean(name = "messageSource")
     public MessageSource configureMessageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:lang/businessexception","classpath:lang/customvalidation","classpath:lang/usermessage","classpath:lang/comboitem");
+        messageSource.setBasenames("classpath:lang/businessexception", "classpath:lang/customvalidation", "classpath:lang/usermessage", "classpath:lang/comboitem");
         messageSource.setCacheSeconds(5);
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
@@ -28,6 +30,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
 
     /**
      * تنظیم لوکیل پیش فرض سامانه
+     *
      * @return خروجی: ریزالور لوکال با لوکیل پیش فرض فارسی که بعد از اجرای نرم افزار به صورت پیش فرض روی فارسی تنظیم هست
      */
     @Bean

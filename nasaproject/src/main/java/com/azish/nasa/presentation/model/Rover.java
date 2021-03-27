@@ -7,15 +7,15 @@ import java.util.Arrays;
 
 @Data
 public class Rover {
-	private int id;
-	private String name;
-	@JsonProperty("landing_date")
-	private String landingDate;
+    private int id;
+    private String name;
+    @JsonProperty("landing_date")
+    private String landingDate;
 
-	@JsonProperty("launch_date")
-	private String launchDate;
+    @JsonProperty("launch_date")
+    private String launchDate;
 
-	private String status;
+    private String status;
 
 //	@JsonProperty("max_sol")
 //	private long maxSol;

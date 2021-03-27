@@ -1,14 +1,15 @@
 package com.azish.nasa.presentation.controller;
 
 import com.azish.nasa.presentation.model.NasaModel;
+import com.azish.nasa.presentation.model.Photo;
 import com.azish.nasa.presentation.model.PhotoList;
 import com.azish.nasa.service.NasaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -21,25 +22,27 @@ import java.util.stream.Collectors;
 public class NasaController {
 
     @Value("${api.nasa.URI}")
-    private String api_nasa_URI;
+    private String uri;
+
+    private NasaService nasaService;
 
     @Autowired
-    @Qualifier("NasaServiceImpl")
-    NasaService nasaService;
+    public NasaController(NasaService nasaService) {
+        this.nasaService = nasaService;
+    }
 
     /**
      * get full information json (Querying by Martian sol)
      *
-     * @param sol
-     * @param camera
-     * @param page
-     * @param api_key
-     * @return
-     * @throws Exception
+     * @param sol     it use for call api
+     * @param camera  it use for call api
+     * @param page    it use for call api
+     * @param api_key it use for call api
+     * @return PhotoList
      */
     @GetMapping(value = "/data")
     public PhotoList getData(@RequestParam("sol") Integer sol, @RequestParam("camera") String camera
-            , @RequestParam("page") Integer page, @RequestParam("api_key") String api_key) throws Exception {
+            , @RequestParam("page") Integer page, @RequestParam("api_key") String api_key) {
 
         NasaModel nasaModel = new NasaModel();
         nasaModel.setSol(sol);
@@ -47,27 +50,28 @@ public class NasaController {
         nasaModel.setPage(page);
         nasaModel.setApi_key(api_key);
 
-        PhotoList photoList = nasaService.getData(api_nasa_URI, nasaModel);
+        return nasaService.getData(uri, nasaModel);
 
-        return photoList;
     }
 
     /**
      * get Image's url(Querying by Martian sol)
      *
-     * @param sol
-     * @param camera
-     * @param page
-     * @param api_key
-     * @return
-     * @throws Exception
+     * @param sol     it use for call api
+     * @param camera  it use for call api
+     * @param page    it use for call api
+     * @param api_key it use for call api
+     * @return List<URL>
+     *
+     *     sample of url
+     *     http://localhost:8080/api/v1/nasa/photo/?sol=1000&page=2&api_key=DEMO_KEY&camera
      */
     @GetMapping(value = "/photo", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<URL> getPhoto(@RequestParam("sol") Integer sol, @RequestParam("camera") String camera
-            , @RequestParam("page") Integer page, @RequestParam("api_key") String api_key) throws Exception {
+            , @RequestParam("page") Integer page, @RequestParam("api_key") String api_key) {
 
         PhotoList photoList = this.getData(sol, camera, page, api_key);
-        List<URL> allPhoto = Arrays.stream(photoList.getPhotos()).map(photo -> photo.getImgSrc()).collect(Collectors.toList());
+        List<URL> allPhoto = Arrays.stream(photoList.getPhotos()).map(Photo::getImgSrc).collect(Collectors.toList());
         log.info("allPhoto : " + allPhoto);
         return allPhoto;
     }
